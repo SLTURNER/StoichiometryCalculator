@@ -54,10 +54,6 @@
     // Remove leading coefficient from molecule string
     molecule = molecule.slice(index);
 
-    if(coeff < 1 || isNaN(coeff)) {
-      var coeff = 1;
-    }
-
     while(molecule != "") {
 
       if(typeof molecule.charAt(1) !== String || molecule.charAt(1) == molecule.chartAt(1).toUppercase()) {
