@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+
+    <script type="text/javascript" src="script.js"> </script>
+
+    <title>    </title>
+  </head>
+  <body>
+
+    <div class="">
+      <p>  This calculator does not work with spaces, and is case-sensitive.  </p>
+      <input type="text" id="molecule">
+      <input type="text" id="mass" disabled placeholder="Mass of molecule">
+      <button type="button" name="button" onclick="metoo()"> Run </button>
+    </div>
+
+
+  </body>
+
+  <script type="text/javascript">
+    function metoo() {
+      var mol = document.getElementById("molecule").value;
+      var result = findMass(mol);
+
+      if(result == false) {
+        console.log("Not a valid molecule");
+      }
+      else {
+        var output = document.getElementById("mass").value = result + " g/mol";
+      }
+    }
+
+  </script>
+
+</html>

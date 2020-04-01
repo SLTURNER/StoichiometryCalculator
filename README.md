@@ -1,23 +1,6 @@
 # MoleculeMassAmountCalc
 
-Calculate Weight Pseudocode
+  The purpose of this website is to quickly calculate the how much of a substance is needed for a specific reaction to take place.
+  The hope is that students can use this website, to gain a better grasp of the chemistry, and allow them to focus on the theory of their course.
 
-  String InputMolecule
-  int sum
-  int psum
-  String atom
-  int atomCoef
-  Until and index value of InputMolecule does not parse to Integer
-    String coeffString += InputMolecule at index
-    int coeff = coeffstring as Integer
-    InputMolecule splice to get rid of parsed data
-  If first index is not an Integer
-    int coeff = 1
-
-  If next index is string/char and capital letter
-    atom += InputMolecule at index
-    if next string/char and capital letter
-      atom += InputMolecule at index
-    else if index parses to Integer
-      atomCoeff += index
-      if index+1
+  This calculator should NOT be used for meaningful research, as it does NOT take significant digits into consideration. 
