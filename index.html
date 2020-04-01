@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+
+    <script type="text/javascript" src="script.js"> </script>
+
+    <title>    </title>
+  </head>
+  <body>
+
+    <button type="button" name="button" onclick="metoo()"> Run </button>
+
+
+  </body>
+
+  <script type="text/javascript">
+    function metoo() {
+      var result = findMass("C2H5OH");
+
+      if(result == false) {
+        console.log("Not a valid molecule");
+      }
+      else {
+        console.log(result + "g/mol");
+      }
+    }
+
+  </script>
+
+</html>
