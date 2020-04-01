@@ -63,12 +63,10 @@
       if(typeof molecule.charAt(1) !== String || molecule.charAt(1) == molecule.chartAt(1).toUppercase()) {
         var tAtom = molecule[0];
         molecule = molecule.slice(1);
-        console.log(tAtom);
       }
       else {
         var tAtom = molecule.slice(0,2);
         molecule = molecule.slice(2);
-        console.log(tAtom);
       }
       var tCoeff = parseInt(molecule, 10);
 
