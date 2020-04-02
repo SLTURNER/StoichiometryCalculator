@@ -1,21 +1,3 @@
-  function Molecule(molecule, amountSub) {
-    this.molecule = molecule;
-    this.mass = findMass(molecule);
-    this.coeff = findCoeff(molecule);
-    this.amountSub = amountSub;
-    this.amountWei = amountSub*this.mass;
-
-  }
-
-  function Molecule(molecule, amountWei) {
-    this.molecule = molecule;
-    this.mass = findMass(molecule);
-    this.coeff = findCoeff(molecule);
-    this.amountSub = amountWei/this.mass;
-    this.amountWei = amountWei;
-
-  }
-
   function Molecule(molecule) {
     this.molecule = molecule;
     this.mass = findMass(molecule);

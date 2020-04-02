@@ -9,26 +9,46 @@
   </head>
   <body>
 
-    <div class="">
-      <p>  This calculator does not work with spaces, and is case-sensitive.  </p>
-      <input type="text" id="molecule">
+    <p>  This calculator does not work with spaces, and is case-sensitive.  </p>
+
+    <div class="" id="" style="width: 15%; margin-left: 1%; margin-right: 1%;">
+      <input type="text" id="molecule" placeholder="Molecule">
+      <input type="text" id="weight" name="weight" value="" placeholder="Insert Grams">
       <input type="text" id="mass" disabled placeholder="Mass of molecule">
-      <button type="button" name="button" onclick="metoo()"> Run </button>
+      <input type="text" id="substance" name="amount" value="" placeholder="Insert Mols">
+      <button type="button" name="button" onclick="call()"> Run </button>
     </div>
 
 
   </body>
 
   <script type="text/javascript">
-    function metoo() {
-      var mol = document.getElementById("molecule").value;
-      var result = findMass(mol);
+    function call() {
+      var molecule = document.getElementById("molecule").value;
+      var weight = document.getElementById("weight").value.replace(/[^\d.-]/g, '');
+      var substance = document.getElementById("substance").value.replace(/[^\d.-]/g, '');
 
-      if(result == false) {
-        console.log("Not a valid molecule");
+      let mole1 = new Molecule(molecule);
+
+      if(substance == "" && weight == "") {
+
+      }
+      else if(substance == "") {
+        mole1['amountWei'] = weight;
+        mole1['amountSub'] = (weight/mole1['mass']).toFixed(3);
       }
       else {
-        var output = document.getElementById("mass").value = result + " g/mol";
+        mole1['amountSub'] = substance;
+        mole1['amountWei'] = substance*mole1['mass'].toFixed(3);
+      }
+
+      if(mole1['mass'] == false) {
+        document.getElementById("mass").value = "Not a valid molecule";
+      }
+      else {
+        document.getElementById("mass").value = mole1['mass'] + " g/mol";
+        document.getElementById("weight").value = mole1['amountWei'] + " g";
+        document.getElementById("substance").value = mole1['amountSub'] + " mol";
       }
     }
 
