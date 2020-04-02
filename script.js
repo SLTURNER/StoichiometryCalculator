@@ -1,27 +1,20 @@
-  function Molecule(molecule, amountSub) {
+  function Molecule(molecule, substance, weight) {
     this.molecule = molecule;
     this.mass = findMass(molecule);
     this.coeff = findCoeff(molecule);
-    this.amountSub = amountSub;
-    this.amountWei = amountSub*this.mass;
 
-  }
-
-  function Molecule(molecule, amountWei) {
-    this.molecule = molecule;
-    this.mass = findMass(molecule);
-    this.coeff = findCoeff(molecule);
-    this.amountSub = amountWei/this.mass;
-    this.amountWei = amountWei;
-
-  }
-
-  function Molecule(molecule) {
-    this.molecule = molecule;
-    this.mass = findMass(molecule);
-    this.coeff = findCoeff(molecule);
-    this.amountSub;
-    this.amountWei;
+    if(substance == "" && weight == "") {
+      this.amountSub = 0;
+      this.amountWei = 0;
+    }
+    else if(substance == "") {
+      this.amountWei = weight;
+      this.amountSub = (weight/this.mass).toFixed(3);
+    }
+    else {
+      this.amountSub = substance;
+      this.amountWei = (substance*this.mass).toFixed(3);
+    }
 
   }
 
@@ -30,7 +23,7 @@
     var coeff = 0;
     coeff = parseInt(molecule, 10);
 
-    if(coeff < 1 || isNaN(coeff)) {
+    if(coeff < 0 || isNaN(coeff)) {
       var coeff = 1;
     }
 
@@ -54,16 +47,17 @@
     // Remove leading coefficient from molecule string
     molecule = molecule.slice(index);
 
-    while(molecule != "") {
-
-      if(typeof molecule.charAt(1) !== String || molecule.charAt(1) == molecule.chartAt(1).toUppercase()) {
+    while(molecule.length > 0) {
+      var code = molecule.charCodeAt(1)
+      if( (code > 47 && code < 58) || (code > 64 && code < 91) || isNaN(code) ) {
         var tAtom = molecule[0];
         molecule = molecule.slice(1);
       }
       else {
-        var tAtom = molecule.slice(0,2);
+        var tAtom = molecule[0] + molecule[1];
         molecule = molecule.slice(2);
       }
+
       var tCoeff = parseInt(molecule, 10);
 
       // Remove used coefficient from molecule
@@ -94,7 +88,7 @@
     }
 
     // Mass without coefficient
-    return mass;
+    return mass.toFixed(3);
   }
 
 

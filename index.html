@@ -3,35 +3,139 @@
   <head>
     <meta charset="utf-8">
 
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
     <script type="text/javascript" src="script.js"> </script>
+    <link rel="stylesheet" href="master.css">
 
     <title>    </title>
   </head>
   <body>
 
-    <div class="">
+    <main>
       <p>  This calculator does not work with spaces, and is case-sensitive.  </p>
-      <input type="text" id="molecule">
-      <input type="text" id="mass" disabled placeholder="Mass of molecule">
-      <button type="button" name="button" onclick="metoo()"> Run </button>
-    </div>
+      <div class="row" id="contRow">
+
+
+      </div>
+
+      <button type="button" class="btn btn-secondary" name="submit" onclick="call()"> Calculate </button>
+      <button type="button" class="btn btn-secondary" name="react" onclick="aM()"> Add Molecule </button>
+
+    </main>
 
 
   </body>
 
   <script type="text/javascript">
-    function metoo() {
-      var mol = document.getElementById("molecule").value;
-      var result = findMass(mol);
 
-      if(result == false) {
-        console.log("Not a valid molecule");
+    for(var i = 0; i < 3; i++) {
+        aM();
+    }
+
+    function call() {
+      var moleculeT = document.getElementsByName("molecule");
+      var weightT = document.getElementsByName("weight");
+      var substanceT = document.getElementsByName("substance");
+      var massT = document.getElementsByName("mass");
+
+      var molecule = [];
+      var weight = [];
+      var substance = [];
+
+      var coeffSub = [];
+
+      var mole = [];
+
+      for(var i = 0; i < moleculeT.length; i++) {
+        molecule[i] = moleculeT[i].value;
+        weight[i] = weightT[i].value.replace(/[^\d.-]/g, '');
+        substance[i] = substanceT[i].value.replace(/[^\d.-]/g, '');
+
+        mole.push(new Molecule(molecule[i], substance[i], weight[i]));
+
+        if(coeffSub.length == 0 && mole[i]['amountSub'] > 0) {
+          coeffSub[0] = mole[i]['coeff'];
+          coeffSub[1] = mole[i]['amountSub'];
+        }
       }
-      else {
-        var output = document.getElementById("mass").value = result + " g/mol";
+
+      for(var i = 0; i < mole.length; i++) {
+        if(mole[i]['mass'] == 0) {
+          continue;
+        }
+        else if(mole[i]['amountSub'] == 0) {
+          var tCoeff = mole[i]['coeff']/coeffSub[0];
+
+          mole[i]['amountSub'] = (coeffSub[1]*tCoeff).toFixed(3);
+          mole[i]['amountWei'] = (mole[i]['amountSub']*mole[i]['mass']).toFixed(3);
+        }
+
+        weightT[i].value = mole[i]['amountWei'];
+        massT[i].value = mole[i]['mass'];
+        substanceT[i].value = mole[i]['amountSub'];
       }
     }
 
+    function aM() {
+      var main = document.getElementById("contRow");
+      var countDiv = main.getElementsByTagName("div");
+
+      if(countDiv.length < 10) {
+        var div = document.createElement("div");
+        div.className = "col form mr-1 ml-1";
+        div.id = countDiv.length;
+
+        var ul = document.createElement("ul");
+
+        var moleUl = document.createElement("li");
+        var moleIn = document.createElement("input")
+        moleIn.name = "molecule";
+        moleIn.placeholder = "Insert Molecule";
+        moleUl.appendChild(moleIn);
+
+        var weightUl = document.createElement("li");
+        var weightIn = document.createElement("input")
+        weightIn.name = "weight";
+        weightIn.placeholder = "Insert Grams";
+        weightUl.appendChild(weightIn);
+
+        var molMUl = document.createElement("li");
+        var molMIn = document.createElement("input")
+        molMIn.name = "mass";
+        molMIn.placeholder = "Mass of Molecule";
+        molMIn.disabled = "true";
+        molMUl.appendChild(molMIn);
+
+        var substanceUl = document.createElement("li");
+        var substanceIn = document.createElement("input")
+        substanceIn.name = "substance";
+        substanceIn.placeholder = "Insert Mols";
+        substanceUl.appendChild(substanceIn);
+
+        ul.appendChild(moleUl);
+        ul.appendChild(weightUl);
+        ul.appendChild(molMUl);
+        ul.appendChild(substanceUl);
+
+        div.appendChild(ul);
+
+        main.appendChild(div);
+      }
+      else {
+        alert("This webpage does not support more than 10 molecules");
+      }
+
+    }
+
   </script>
+
+  <!-- Bootstrap -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
 </html>
