@@ -64,7 +64,10 @@
       }
 
       for(var i = 0; i < mole.length; i++) {
-        if(mole[i]['amountSub'] == 0 && mole[i]['amountSub'] != 0) {
+        if(mole[i]['mass'] == 0) {
+          continue;
+        }
+        else if(mole[i]['amountSub'] == 0) {
           var tCoeff = mole[i]['coeff']/coeffSub[0];
 
           mole[i]['amountSub'] = (coeffSub[1]*tCoeff).toFixed(3);

@@ -88,7 +88,6 @@
     }
 
     // Mass without coefficient
-    console.log(mass);
     return mass.toFixed(3);
   }
 
