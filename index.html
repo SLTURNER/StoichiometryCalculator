@@ -15,15 +15,35 @@
   </head>
   <body>
 
+    <nav class="navbar navbar-expand-lg navbar-dark nav-bg">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="#">
+        <img class="logo" src="logo.png" alt="Logo (Cog)">
+      </a>
+
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+
+        </ul>
+      </div>
+    </nav>
+
     <main>
       <p>  This calculator does not work with spaces, and is case-sensitive.  </p>
-      <div class="row" id="contRow">
 
+      <div class="row" id="contRow">
 
       </div>
 
       <button type="button" class="btn btn-secondary" name="submit" onclick="call()"> Calculate </button>
       <button type="button" class="btn btn-secondary" name="react" onclick="aM()"> Add Molecule </button>
+      <button type="button" class="btn btn-secondary" name="clearFields" onclick="clearFields()"> Clear Fields </button>
 
     </main>
 
@@ -31,6 +51,16 @@
   </body>
 
   <script type="text/javascript">
+
+    function clearFields() {
+      var row = document.getElementById("contRow");
+      var input = row.getElementsByTagName("input");
+
+      for(var i = 0; i < input.length; i++) {
+        input[i].value = "";
+      }
+
+    }
 
     for(var i = 0; i < 3; i++) {
         aM();
@@ -57,7 +87,7 @@
 
         mole.push(new Molecule(molecule[i], substance[i], weight[i]));
 
-        if(coeffSub.length == 0 && mole[i]['amountSub'] > 0) {
+        if(coeffSub.length == 0 && mole[i]['amountSub'] > 0 && mole[i]['mass'] != 0) {
           coeffSub[0] = mole[i]['coeff'];
           coeffSub[1] = mole[i]['amountSub'];
         }
@@ -72,6 +102,11 @@
 
           mole[i]['amountSub'] = (coeffSub[1]*tCoeff).toFixed(3);
           mole[i]['amountWei'] = (mole[i]['amountSub']*mole[i]['mass']).toFixed(3);
+        }
+
+        if(isNaN(mole[i]['amountWei'])) {
+          mole[i]['amountSub'] = 0;
+          mole[i]['amountWei'] = 0;
         }
 
         weightT[i].value = mole[i]['amountWei'];
@@ -95,12 +130,14 @@
         var moleIn = document.createElement("input")
         moleIn.name = "molecule";
         moleIn.placeholder = "Insert Molecule";
+        moleIn.className = "form-control";
         moleUl.appendChild(moleIn);
 
         var weightUl = document.createElement("li");
         var weightIn = document.createElement("input")
         weightIn.name = "weight";
         weightIn.placeholder = "Insert Grams";
+        weightIn.className = "form-control";
         weightUl.appendChild(weightIn);
 
         var molMUl = document.createElement("li");
@@ -108,12 +145,14 @@
         molMIn.name = "mass";
         molMIn.placeholder = "Mass of Molecule";
         molMIn.disabled = "true";
+        molMIn.className = "form-control";
         molMUl.appendChild(molMIn);
 
         var substanceUl = document.createElement("li");
         var substanceIn = document.createElement("input")
         substanceIn.name = "substance";
         substanceIn.placeholder = "Insert Mols";
+        substanceIn.className = "form-control";
         substanceUl.appendChild(substanceIn);
 
         ul.appendChild(moleUl);

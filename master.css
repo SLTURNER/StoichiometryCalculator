@@ -1,11 +1,53 @@
+:root{
+  --bg: #EEEEEE;
+  --font: #212121;
+  --nav-bg: #757575;
+  --nav-font: #424242;
+  --nav-act: #212121;
+  --nav-hov: #616161;
+
+}
+
+@media (prefers-color-scheme: dark) {
+  :root{
+    --bg: #424242;
+    --font: #EEEEEE;
+    --nav-bg: #212121;
+    --nav-font: #BDBDBD;
+    --nav-act: #EEEEEE;
+    --nav-hov: #FAFAFA;
+  }
+}
+
+body {
+  background-color: var(--bg);
+
+}
+
 
 main {
   width: 100%;
   margin: 0;
   padding: 0;
 
+  color: var(--font);
   padding-left: 2%;
   padding-right: 2%;
+  margin-top: 1%;
+}
+
+.nav-bg {
+  background-color: var(--nav-bg);
+  color: var(--nav-font);
+  font-weight: 600;
+}
+
+.nav-item: hover {
+  color: var(--navn-hov);
+}
+
+.active {
+  color: var(--navn-act);
 }
 
 .row {
@@ -43,10 +85,15 @@ main {
 .form ul li input {
   width: 100%;
   margin: 0;
-  padding: 0;
+  padding: 2%;
 }
 
 .btn {
   margin-top: 5px;
   font-weight: 500;
+}
+
+.logo {
+  width: 2rem;
+  height: auto;
 }
