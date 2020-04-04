@@ -5,7 +5,14 @@
   --nav-font: #424242;
   --nav-act: #212121;
   --nav-hov: #616161;
+  --form-max: 50%;
 
+}
+
+@media only screen and (orientation: portrait) {
+  :root{
+    --form-max: 100%;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -66,12 +73,12 @@ main {
   width: 100%;
   margin: 0;
   padding: 0;
+  max-width: var(--form-max);
 }
 
 .form ul {
   padding: 0;
   margin: 0;
-  width: 100%;
 }
 
 .form ul li {
@@ -96,4 +103,20 @@ main {
 .logo {
   width: 2rem;
   height: auto;
+}
+
+.text {
+  max-width: var(--form-max);
+}
+
+.td {
+  width: 10rem;
+}
+
+.table {
+  width: auto;
+  margin: 5% auto 0 0;
+  padding: 2%;
+  background-color: white;
+  border: 1px solid black;
 }
