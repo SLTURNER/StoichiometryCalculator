@@ -11,7 +11,7 @@
     <script type="text/javascript" src="script.js"> </script>
     <link rel="stylesheet" href="master.css">
 
-    <title>    </title>
+    <title>  Stoichiometry Calculator  </title>
   </head>
   <body>
 
@@ -34,8 +34,12 @@
       </div>
     </nav>
 
-    <main>
-      <p>  This calculator does not work with spaces, and is case-sensitive.  </p>
+    <main id="main">
+      <div class="alert alert-secondary text" role="alert">
+        <p>  This calculator does not work with spaces, and is case-sensitive.  </p>
+        <p>  Only one amount field needs to be filled, whether it be grams of the first molecule, or mols of the 7th.  </p>
+        <p>  Filling in more than one field can lead to some fields being overridden, as it will calculate precise amounts based on the coefficients of the molecules.  </p>
+      </div>
 
       <div class="row" id="contRow">
 
@@ -44,6 +48,7 @@
       <button type="button" class="btn btn-secondary" name="submit" onclick="call()"> Calculate </button>
       <button type="button" class="btn btn-secondary" name="react" onclick="aM()"> Add Molecule </button>
       <button type="button" class="btn btn-secondary" name="clearFields" onclick="clearFields()"> Clear Fields </button>
+      <button type="button" class="btn btn-secondary" name="exportData" onclick="exportData()"> Export Data</button>
 
     </main>
 
@@ -62,7 +67,7 @@
 
     }
 
-    for(var i = 0; i < 3; i++) {
+    for(var i = 0; i < 1; i++) {
         aM();
     }
 
@@ -119,7 +124,7 @@
       var main = document.getElementById("contRow");
       var countDiv = main.getElementsByTagName("div");
 
-      if(countDiv.length < 10) {
+      if(countDiv.length < 6) {
         var div = document.createElement("div");
         div.className = "col form mr-1 ml-1";
         div.id = countDiv.length;
@@ -166,6 +171,60 @@
       }
       else {
         alert("This webpage does not support more than 10 molecules");
+      }
+
+    }
+
+    function exportData() {
+      var moleculeT = document.getElementsByName("molecule");
+      var weightT = document.getElementsByName("weight");
+      var substanceT = document.getElementsByName("substance");
+      var massT = document.getElementsByName("mass");
+
+      if( moleculeT.length != 1 || moleculeT[0].value != "") {
+        var table = document.createElement("table");
+        var row1 = document.createElement("tr");
+        row1.className = "row";
+        var row2 = document.createElement("tr");
+        row2.className = "row";
+        var row3 = document.createElement("tr");
+        row3.className = "row";
+        var row4 = document.createElement("tr");
+        row4.className = "row";
+
+        for(var i = 0; i < moleculeT.length; i++) {
+          var molecule = document.createElement('td');
+          molecule.innerHTML = moleculeT[i].value;
+          molecule.className = "td col";
+          row1.appendChild(molecule);
+
+          var weight = document.createElement('td');
+          weight.innerHTML = weightT[i].value;
+          weight.className = "td col";
+          row2.appendChild(weight);
+
+          var mass = document.createElement('td');
+          mass.innerHTML = massT[i].value;
+          mass.className = "td col";
+          row3.appendChild(mass);
+
+          var substance = document.createElement('td');
+          substance.className = "td col";
+          substance.innerHTML = substanceT[i].value;
+          row4.appendChild(substance);
+        }
+
+        table.appendChild(row1);
+        table.appendChild(row2);
+        table.appendChild(row3);
+        table.appendChild(row4);
+        table.className = "table";
+
+        var temp = document.getElementById("main");
+        temp.appendChild(table);
+      }
+      else {
+        alert("Nothing to export");
       }
 
     }
