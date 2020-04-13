@@ -120,3 +120,8 @@ main {
   background-color: white;
   border: 1px solid black;
 }
+
+.navbar-toggler {
+  border: 0px solid black;
+  border-color: var(--nav-bg);
+}

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" >
   <head>
     <meta charset="utf-8">
 
@@ -10,9 +10,36 @@
 
     <script type="text/javascript" src="script.js"> </script>
     <link rel="stylesheet" href="master.css">
+    <link rel="manifest" href="manifest.json" crossorigin="use-credentials">
 
-    <title>  Stoichiometry Calculator  </title>
+    <meta name="theme_color" id="themeColour" content="#EEEEEE">
+    <link rel="icon" type="image/png" href="icon32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="icon16.png" sizes="16x16" />
+
+    <title>  EleMeasure  </title>
   </head>
+  <script type="text/javascript">
+
+    // PWA ServiceWorker
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      var theme = document.getElementById("themeColour");
+      theme.content = "#424242";
+    }
+
+    // PWA ServiceWorker
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/sw.js').then(function(registration) {
+          // Registration was successful
+          console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        }, function(err) {
+          // registration failed :(
+          console.log('ServiceWorker registration failed: ', err);
+        });
+      });
+    }
+
+  </script>
   <body>
 
     <nav class="navbar navbar-expand-lg navbar-dark nav-bg">
@@ -23,11 +50,11 @@
         <img class="logo" src="logo.png" alt="Logo (Cog)">
       </a>
 
-      <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <div class="collapse navbar-collapse" id="navbarToggler">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="#">  Home  <span class="sr-only"> (Current) </span></a>
           </li>
 
         </ul>
@@ -37,7 +64,7 @@
     <main id="main">
       <div class="alert alert-secondary text" role="alert">
         <p>  This calculator does not work with spaces, and is case-sensitive.  </p>
-        <p>  Only one amount field needs to be filled, whether it be grams of the first molecule, or mols of the 7th.  </p>
+        <p>  Only one amount field needs to be filled, whether it be grams of the first molecule, or mols of the 5th.  </p>
         <p>  Filling in more than one field can lead to some fields being overridden, as it will calculate precise amounts based on the coefficients of the molecules.  </p>
       </div>
 
