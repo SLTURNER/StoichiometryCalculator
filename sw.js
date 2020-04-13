@@ -4,8 +4,7 @@ var urlsToCache = [
   'manifest.json',
   'script.js',
   'master.css',
-  'sw.js',
-  'bootstrap.css'
+  'sw.js'
 ];
 
 self.addEventListener('install', function(event) {
