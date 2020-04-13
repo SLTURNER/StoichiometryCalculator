@@ -1,11 +1,11 @@
 var CACHE_NAME = 'simple-PWA-localStorage';
 var urlsToCache = [
-  './',
-  './index.html',
-  './manifest.json',
-  './script.js',
-  './master.css',
-  './bootstrap.css'
+  '/',
+  '/index.html',
+  '/manifest.json',
+  '/script.js',
+  '/master.css',
+  '/bootstrap.css'
 ];
 
 self.addEventListener('install', function(event) {
