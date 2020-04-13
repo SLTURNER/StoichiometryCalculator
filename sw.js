@@ -1,10 +1,10 @@
 var CACHE_NAME = 'simple-PWA-localStorage';
 var urlsToCache = [
-  '/',
   'index.html',
   'manifest.json',
   'script.js',
   'master.css',
+  'sw.js',
   'bootstrap.css'
 ];
 
