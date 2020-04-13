@@ -18,6 +18,6 @@
   "orientation": "landscape",
   "background_color": "#757575",
   "display": "standalone",
-  "scope": "/",
+  "scope": "./",
   "theme_color": "#757575"
 }
