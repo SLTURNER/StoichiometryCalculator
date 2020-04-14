@@ -69,33 +69,45 @@
       var ul = document.createElement("ul");
 
       var moleUl = document.createElement("li");
+      var moleLab = document.createElement("label");
       var moleIn = document.createElement("input")
       moleIn.name = "molecule";
       moleIn.placeholder = "Insert Molecule";
       moleIn.className = "form-control";
-      moleUl.appendChild(moleIn);
+      moleLab.title = "Type formula of molecule";
+      moleLab.appendChild(moleIn);
+      moleUl.appendChild(moleLab);
 
       var weightUl = document.createElement("li");
+      var weightLab = document.createElement("label");
       var weightIn = document.createElement("input")
       weightIn.name = "weight";
       weightIn.placeholder = "Insert Grams";
       weightIn.className = "form-control";
-      weightUl.appendChild(weightIn);
+      weightLab.title = "Type grams of molecule used"
+      weightLab.appendChild(weightIn);
+      weightUl.appendChild(weightLab);
 
       var molMUl = document.createElement("li");
+      var molLab = document.createElement("label");
       var molMIn = document.createElement("input")
       molMIn.name = "mass";
       molMIn.placeholder = "Mass of Molecule";
       molMIn.disabled = "true";
       molMIn.className = "form-control";
-      molMUl.appendChild(molMIn);
+      molLab.title = "Grams per Mol of the molecule will be calculated";
+      molLab.appendChild(molMIn);
+      molMUl.appendChild(molLab);
 
       var substanceUl = document.createElement("li");
+      var substanceLab = document.createElement("label");
       var substanceIn = document.createElement("input")
       substanceIn.name = "substance";
       substanceIn.placeholder = "Insert Mols";
       substanceIn.className = "form-control";
-      substanceUl.appendChild(substanceIn);
+      substanceLab.title = "Type mols of molecule used";
+      substanceLab.appendChild(substanceIn);
+      substanceUl.appendChild(substanceLab);
 
       ul.appendChild(moleUl);
       ul.appendChild(weightUl);
