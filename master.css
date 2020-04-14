@@ -121,6 +121,14 @@ main {
   border: 1px solid black;
 }
 
+@media only screen and (orientation: portrait) and (max-width: 576px) {
+  .table, #export {
+    visibility: hidden;
+  }
+
+}
+
+
 .navbar-toggler {
   border: 0px solid black;
   border-color: var(--nav-bg);
